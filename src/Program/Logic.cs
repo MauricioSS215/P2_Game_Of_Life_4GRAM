@@ -6,6 +6,12 @@ public class Logic
     int boardWidth = gameBoard.GetLength(0);
     int boardHeight = gameBoard.GetLength(1);
 
+    public Logic(int x, int y)
+    {
+        boardWidth = x;
+        boardHeight = y;
+    }
+
     bool[,] cloneboard = new bool[boardWidth, boardHeight];
         for (int x = 0; x < boardWidth; x++)
     {
