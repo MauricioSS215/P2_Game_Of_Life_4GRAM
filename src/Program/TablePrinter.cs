@@ -18,10 +18,9 @@ public class TablePrinter
         height = board.GetLength(1);
         gameLogic = logic;
     }
-
-    public void PrintAndRun()
+    public void PrintAndRun(int iterations = 3, int delay = 300)//Modificando el valor de 'iterations' se puede elegir cuantas veces se refrescara el tablero.
     {
-        while (true)
+        for (int iteration = 0; iteration < iterations; iteration++)//Se quito el while(true) en remplazo de un iterador for con el fin de que el programa termine rapidamente.
         {
             Console.Clear();
             StringBuilder s = new StringBuilder();
@@ -48,7 +47,7 @@ public class TablePrinter
             gameLogic.UpdateBoard();
             board = gameLogic.GetBoard();
             //=================================================
-            Thread.Sleep(300);
+            Thread.Sleep(delay);
         }
         
 
