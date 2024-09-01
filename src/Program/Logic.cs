@@ -2,21 +2,20 @@ namespace Ucu.Poo.GameOfLife;
 
 public class Logic
 {
-    static bool[,] gameBoard;  /* contenido del tablero */;
+    static bool[,] gameBoard;  /* contenido del tablero */
     private int boardWidth;
     private int boardHeight; 
 
     public Logic(bool[,] initialBoard)
     {
-        gameBoard = initialBoard
+        gameBoard = initialBoard;
         boardWidth = gameBoard.GetLength(0);
         boardHeight = gameBoard.GetLength(1);
     }
 
-    static public void UpdateBoard()
-
+    public void UpdateBoard()
     {
-        bool[,] cloneboard = new bool[boardWidth, boardHeight];
+        bool[,] cloneBoard = new bool[boardWidth, boardHeight];
         for (int x = 0; x < boardWidth; x++)
         {
             for (int y = 0; y < boardHeight; y++)
@@ -41,26 +40,30 @@ public class Logic
                 if (gameBoard[x, y] && aliveNeighbors < 2)
                 {
                     //Celula muere por baja población
-                    cloneboard[x, y] = false;
+                    cloneBoard[x, y] = false;
                 }
                 else if (gameBoard[x, y] && aliveNeighbors > 3)
                 {
                     //Celula muere por sobrepoblación
-                    cloneboard[x, y] = false;
+                    cloneBoard[x, y] = false;
                 }
                 else if (!gameBoard[x, y] && aliveNeighbors == 3)
                 {
                     //Celula nace por reproducción
-                    cloneboard[x, y] = true;
+                    cloneBoard[x, y] = true;
                 }
                 else
                 {
                     //Celula mantiene el estado que tenía
-                    cloneboard[x, y] = gameBoard[x, y];
+                    cloneBoard[x, y] = gameBoard[x, y];
                 }
 
             }
         }
-        gameBoard = cloneboard;
+        gameBoard = cloneBoard;
+    }
+    public bool[,] GetBoard()
+    {
+        return gameBoard;
     }
 }
